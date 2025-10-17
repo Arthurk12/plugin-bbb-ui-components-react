@@ -4,6 +4,8 @@
 
 A brief description of the plugin including a screenshot and/or a short video.
 
+![Plugin screenshot](public/assets/plugin.gif)
+
 ## Building the Plugin
 
 To build the plugin for production use, follow these steps:
