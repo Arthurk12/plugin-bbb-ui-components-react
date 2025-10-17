@@ -5,8 +5,8 @@ const path = require('path');
 module.exports = {
   entry: './src/index.tsx',
   output: {
-    filename: '<plugin-name>.js',
-    library: '<plugin-name>',
+    filename: 'plugin-bbb-ui-components-react.js',
+    library: 'plugin-bbb-ui-components-react',
     libraryTarget: 'umd',
     publicPath: '/',
     globalObject: 'this',
@@ -20,7 +20,7 @@ module.exports = {
     client: {
       overlay: false,
     },
-    onBeforeSetupMiddleware: (devServer) => {
+    setupMiddlewares: (middlewares, devServer) => {
       if (!devServer) {
         throw new Error('webpack-dev-server is not defined');
       }
@@ -29,6 +29,7 @@ module.exports = {
       devServer.app.get('/manifest.json', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'manifest.json'));
       });
+      return middlewares;
     },
   },
   module: {
@@ -53,6 +54,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
+    alias: {
+      'styled-components': path.resolve('./node_modules/styled-components'),
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+    },
   },
   plugins: [
     new CopyWebpackPlugin({

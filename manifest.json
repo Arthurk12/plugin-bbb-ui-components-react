@@ -1,6 +1,5 @@
 {
-  "requiredSdkVersion": "~0.0.73",
-  "name": "<plugin-name>",
-  "javascriptEntrypointUrl": "<plugin-name>.js",
-  "localesBaseUrl": "https://cdn.dominio.com/pluginabc/"
+  "requiredSdkVersion": "0.x",
+  "name": "plugin-bbb-ui-components-react",
+  "javascriptEntrypointUrl": "plugin-bbb-ui-components-react.js"
 }
