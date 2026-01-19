@@ -15,10 +15,12 @@ const icons: React.ReactNode[] = [<MdExpandMore size="1.5rem" />, <MdArrowDropDo
 
 const MenuItemsList = [
   [
+    <MenuItem key="" value=""> </MenuItem>,
     <MenuItem key="a" value="a">Option A</MenuItem>,
     <MenuItem key="b" value="b">Option B</MenuItem>,
   ],
   [
+    <MenuItem key="" value=""> </MenuItem>,
     <MenuItem key="x" value="x">Option X</MenuItem>,
     <MenuItem key="y" value="y">Option Y</MenuItem>,
     <MenuItem key="z" value="z">Option Z</MenuItem>,
@@ -54,23 +56,26 @@ export function BBBSelectCombinations() {
           icon,
           children,
         } = values;
+        const iconName = React.isValidElement(icon)
+          ? (icon.type as React.ComponentType<unknown>).displayName
+            || (icon.type as React.ComponentType<unknown>).name
+          : undefined;
 
         const key = [
           title ? 'title' : 'notitle',
-          icon ? 'icon' : 'noicon',
+          iconName,
           children.length,
         ].join('-');
 
         return (
-          (
-            <BBBSelect
-              key={key}
-              title={title}
-              icon={icon}
-            >
-              {children}
-            </BBBSelect>
-          )
+          <BBBSelect
+            key={key}
+            title={title}
+            icon={icon}
+            value=""
+          >
+            {children}
+          </BBBSelect>
         );
       })}
     </div>
