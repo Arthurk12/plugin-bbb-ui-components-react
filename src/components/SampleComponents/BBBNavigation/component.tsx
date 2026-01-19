@@ -16,7 +16,7 @@ const children = [<span>element appended to header</span>, null];
 type Combo = {
   label: typeof labels[number];
   icon: typeof icons[number];
-  children: typeof children[number];
+  child: typeof children[number];
 };
 
 function getCombinations(): Combo[] {
@@ -25,7 +25,7 @@ function getCombinations(): Combo[] {
       children.flatMap((child) => ({
         label,
         icon,
-        children: child,
+        child,
       }))
     ))
   ));
@@ -40,11 +40,17 @@ export function BBBNavigationCombinations() {
         const {
           label,
           icon,
+          child,
         } = values;
+        const iconName = React.isValidElement(icon)
+          ? (icon.type as React.ComponentType<unknown>).displayName
+            || (icon.type as React.ComponentType<unknown>).name
+          : undefined;
 
         const key = [
           label,
-          icon ? 'icon' : 'default-icon',
+          iconName,
+          child ? 'children' : 'nochildren',
         ].join('-');
 
         return (
@@ -58,7 +64,7 @@ export function BBBNavigationCombinations() {
                 console.log(`Clicked on BBB navigation ${label}`);
               }}
             >
-              {children}
+              {child}
             </BBBNavigation>
           )
         );

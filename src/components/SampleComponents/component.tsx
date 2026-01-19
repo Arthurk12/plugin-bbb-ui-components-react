@@ -41,18 +41,21 @@ const componentsList: ComponentListItem[] = [
 ];
 
 export const AllComponentsShowcase: React.FC = function component() {
+  const appRef = React.useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState(componentsList[0].value);
   const [openModal, setOpenModal] = useState(false);
   const SelectedComponent = componentsList.find((c) => c.value === selected)?.Component;
   return (
-    <div style={{
-      padding: 24,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem',
-      height: '100%',
-      boxSizing: 'border-box',
-    }}
+    <div
+      style={{
+        padding: 24,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        height: '100%',
+        boxSizing: 'border-box',
+      }}
+      ref={appRef}
     >
       <BBButton
         onClick={() => setOpenModal(true)}
@@ -67,6 +70,7 @@ export const AllComponentsShowcase: React.FC = function component() {
           shouldCloseOnOverlayClick
           footerContent={<BBButton onClick={() => setOpenModal(false)} label="Close" />}
           showDividers
+          appElement={appRef.current || undefined}
         >
           <p>Test!</p>
           <p>Test!</p>

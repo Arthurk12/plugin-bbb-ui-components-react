@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
         "outDir": "./dist-tsc/",
+        "rootDir": "./src",
         "noImplicitAny": true,
         "module": "es6",
         "target": "es5",
         "jsx": "react",
         "allowJs": true,
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "allowSyntheticDefaultImports": true,
     },
     "include": ["src/*"],

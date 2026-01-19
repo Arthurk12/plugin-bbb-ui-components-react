@@ -51,7 +51,7 @@ export function BBBTextAreaInputCombinations() {
         const key = [
           rows ? `rows${rows}` : 'norows',
           maxLength ? `max${maxLength}` : 'nomax',
-          placeholder ? 'ph' : 'noph',
+          placeholder,
           autoFocus ? 'af' : 'noaf',
         ].join('-');
 

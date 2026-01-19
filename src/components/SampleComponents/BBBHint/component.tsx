@@ -18,24 +18,24 @@ const icons: React.ReactNode[] = [
   <MdInfo />, <MdWarning />, <MdError />, <MdCheckCircle />, null] as const;
 const titles = ['Hint Title', ''] as const;
 const labels = ['Basic hint'] as const;
-const childrenOptions: React.ReactNode[] = [<span key="child">This is extra hint content.</span>, null] as const;
+const children: React.ReactNode[] = [<span key="child">This is extra hint content.</span>, null] as const;
 
 type Combo = {
   label: typeof labels[number];
   title: typeof titles[number];
   icon: typeof icons[number];
-  children: typeof childrenOptions[number];
+  child: typeof children[number];
 };
 
 function getCombinations(): Combo[] {
   return labels.flatMap((label) => (
     titles.flatMap((title) => (
       icons.flatMap((icon) => (
-        childrenOptions.map((children) => ({
+        children.map((child) => ({
           label,
           title,
           icon,
-          children,
+          child,
         }))
       ))
     ))
@@ -50,14 +50,18 @@ export function BBBHintCombinations() {
           label,
           title,
           icon,
-          children,
+          child,
         } = values;
+        const iconName = React.isValidElement(icon)
+          ? (icon.type as React.ComponentType<unknown>).displayName
+            || (icon.type as React.ComponentType<unknown>).name
+          : undefined;
 
         const key = [
           label,
           title ? 'title' : 'notitle',
-          icon ? 'icon' : 'default icon',
-          children ? 'children' : 'nochildren',
+          iconName,
+          child ? 'children' : 'nochildren',
         ].join('-');
 
         return (
@@ -71,7 +75,7 @@ export function BBBHintCombinations() {
               console.log(`Close requested for hint: ${label}`);
             }}
           >
-            {children}
+            {child}
           </BBBHint>
         );
       })}
