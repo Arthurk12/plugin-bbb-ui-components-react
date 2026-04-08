@@ -21,15 +21,21 @@ type Combo = {
 };
 
 function getCombinations(): Combo[] {
-  return labels.flatMap((label) => (
-    helperTexts.flatMap((helperText) => (
-      textPositions.flatMap((textPosition) => ({
-        label,
-        helperText,
-        textPosition,
-      }))
-    ))
-  ));
+  const combinations: Combo[] = [];
+
+  labels.forEach((label: typeof labels[number]) => {
+    helperTexts.forEach((helperText: typeof helperTexts[number]) => {
+      textPositions.forEach((textPosition: typeof textPositions[number]) => {
+        combinations.push({
+          label,
+          helperText,
+          textPosition,
+        });
+      });
+    });
+  });
+
+  return combinations;
 }
 
 export function BBBToggleCombinations() {
