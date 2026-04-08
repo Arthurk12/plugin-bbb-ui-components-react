@@ -31,7 +31,7 @@
       "import/extensions": [2, "never"],
       "import/no-absolute-path": 0,
       "import/no-unresolved": 0,
-      "import/no-extraneous-dependencies": 1,
+      "import/no-extraneous-dependencies": 0,
       "react/prop-types": 1,
       "jsx-a11y/no-access-key": 0,
       "react/jsx-props-no-spreading": "off",
